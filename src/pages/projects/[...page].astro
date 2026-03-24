@@ -1,0 +1,180 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import MotionReveal from "../../components/MotionReveal.tsx";
+import { fetchProjects } from "../../utils/fetchProjects";
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+  const projects = await fetchProjects();
+  return paginate(projects, { pageSize: 4 });
+}
+
+const { page } = Astro.props;
+const projects = page.data;
+const totalPages = page.lastPage;
+const currentPage = page.currentPage;
+---
+
+<BaseLayout title={`Projects | DatC.DEV${currentPage > 1 ? ` - Page ${currentPage}` : ''}`}>
+  <Nav />
+  
+  <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto flex-grow w-full">
+    <!-- Hero Section -->
+    <header class="mb-20 max-w-3xl">
+      <MotionReveal client:load delay={0.1}>
+        <h1 class="text-5xl md:text-7xl font-sans font-extrabold tracking-tighter text-on-surface mb-6 leading-tight">
+            Crafting <span class="text-primary italic">Seamless</span> Mobile Experiences.
+        </h1>
+      </MotionReveal>
+      <MotionReveal client:load delay={0.2}>
+        <p class="text-lg text-on-surface-variant leading-relaxed font-sans">
+            A selection of high-performance mobile applications built with modern engineering practices and scalable architecture. Focused on Flutter and Android (Kotlin), with a strong emphasis on continuous learning and improvement.
+        </p>
+      </MotionReveal>
+    </header>
+    
+    <!-- Project Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+      {projects && projects.length > 0 ? projects.map((project) => (
+        <div class="flex">
+          <div class="project-card w-full group relative bg-surface-container-low rounded-3xl overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(57,255,20,0.12)] border border-white/5" style="will-change: box-shadow;">
+              <div class="p-8 md:p-12 pb-0">
+              <div class="flex flex-wrap gap-2 mb-6">
+                  {project.techstack ? project.techstack.split(',').map((tech) => tech.trim() ? (
+                    <span class="bg-surface-container-high text-primary text-[10px] font-sans font-medium uppercase tracking-[0.1em] px-3 py-1 rounded-sm">{tech.trim()}</span>
+                  ) : null) : null}
+              </div>
+              <h3 class="text-3xl font-sans font-bold text-on-surface mb-4">{project.title}</h3>
+              <p class="text-on-surface-variant mb-4 line-clamp-2 font-sans">{project.description}</p>
+              {project.status && (
+                <div class="mb-4">
+                  <span class="text-xs font-mono text-primary/80 border border-primary/20 bg-primary/5 px-2 py-1 rounded-full">{project.status}</span>
+                </div>
+              )}
+              </div>
+              <div class="relative h-[450px] mt-4 flex justify-center items-end overflow-hidden px-8">
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent z-10"></div>
+              <div class="absolute w-[200px] h-[200px] bg-primary/8 rounded-full blur-[40px] bottom-20 opacity-70"></div>
+              <div class="relative w-full max-w-[280px] aspect-[9/19.5] bg-[#050505] rounded-[2.5rem] border-[8px] border-surface-container-highest shadow-2xl overflow-hidden">
+                  {project.image && (project.image.startsWith('http') || project.image.startsWith('/')) ? (
+                    <img
+                      class="w-full h-full object-cover grayscale brightness-75 contrast-125"
+                      alt={project.title}
+                      src={project.image}
+                      loading="eager"
+                    />
+                  ) : (
+                    <div class="w-full h-full bg-surface-container-highest flex items-center justify-center">
+                      <span class="material-symbols-outlined text-4xl text-primary/20">image</span>
+                    </div>
+                  )}
+                  <div class="absolute inset-0 bg-primary/20 mix-blend-color z-10"></div>
+              </div>
+              <div class="hover-reveal opacity-0 translate-y-2 transition-opacity duration-200 absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 bg-surface/80">
+                  <button class="bg-primary text-surface font-sans font-bold px-8 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform">
+                  View Project Details <span class="material-symbols-outlined text-lg">arrow_outward</span>
+                  </button>
+                  {project.link_github && (
+                    <a href={project.link_github} target="_blank" rel="noopener noreferrer" class="text-on-surface font-sans font-bold px-8 py-3 flex items-center gap-2 hover:text-primary transition-colors cursor-pointer z-30 pointer-events-auto">
+                      <i class="devicon-github-original text-xl"></i> Github Repo
+                    </a>
+                  )}
+              </div>
+              </div>
+          </div>
+        </div>
+      )) : (
+        <div class="col-span-1 md:col-span-2 text-center py-20 text-on-surface-variant font-sans bg-surface-container-low rounded-3xl border border-white/5">
+          No projects available yet. Check back soon!
+        </div>
+      )}
+    </div>
+
+    <!-- Pagination -->
+    {totalPages > 1 && (
+      <nav class="mt-20 flex items-center justify-center gap-3" aria-label="Pagination">
+        <!-- Prev -->
+        {page.url.prev ? (
+          <a
+            href={page.url.prev}
+            class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-outline-variant/30 text-on-surface-variant font-sans text-sm hover:border-primary hover:text-primary transition-all duration-200"
+          >
+            <span class="material-symbols-outlined text-base">arrow_back</span>
+            Prev
+          </a>
+        ) : (
+          <span class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-outline-variant/10 text-on-surface-variant/30 font-sans text-sm cursor-not-allowed select-none">
+            <span class="material-symbols-outlined text-base">arrow_back</span>
+            Prev
+          </span>
+        )}
+
+        <!-- Page Numbers -->
+        <div class="flex items-center gap-2">
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+            <a
+              href={pageNum === 1 ? '/projects' : `/projects/${pageNum}`}
+              class={`w-10 h-10 rounded-full flex items-center justify-center font-sans text-sm font-medium transition-all duration-200 ${
+                pageNum === currentPage
+                  ? 'bg-primary text-surface shadow-[0_0_20px_rgba(57,255,20,0.3)]'
+                  : 'border border-outline-variant/30 text-on-surface-variant hover:border-primary hover:text-primary'
+              }`}
+              aria-current={pageNum === currentPage ? 'page' : undefined}
+            >
+              {pageNum}
+            </a>
+          ))}
+        </div>
+
+        <!-- Next -->
+        {page.url.next ? (
+          <a
+            href={page.url.next}
+            class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-outline-variant/30 text-on-surface-variant font-sans text-sm hover:border-primary hover:text-primary transition-all duration-200"
+          >
+            Next
+            <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        ) : (
+          <span class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-outline-variant/10 text-on-surface-variant/30 font-sans text-sm cursor-not-allowed select-none">
+            Next
+            <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </span>
+        )}
+      </nav>
+    )}
+
+    <!-- Page Info -->
+    {totalPages > 1 && (
+      <p class="text-center mt-4 text-on-surface-variant/50 font-sans text-sm">
+        Page {currentPage} of {totalPages} · {page.total} projects total
+      </p>
+    )}
+
+    <!-- CTA Section -->
+    <div class="w-full relative">
+        <section class="mt-32 p-12 bg-surface rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 border border-outline-variant/10">
+        <div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-[100px]"></div>
+        <div class="relative z-10">
+            <h2 class="text-4xl font-sans font-extrabold text-on-surface mb-4 tracking-tight">Need a bespoke mobile solution?</h2>
+            <p class="text-on-surface-variant max-w-lg font-sans">I'm currently accepting new projects. Let's discuss how we can build something exceptional together.</p>
+        </div>
+        <div class="relative z-10">
+            <a href="/contact" class="bg-primary text-surface font-sans font-bold px-10 py-4 rounded-full flex items-center gap-3 hover:-translate-y-1 transition-transform shadow-[0_10px_30px_-10px_rgba(57,255,20,0.3)]">
+                Start a Discussion <span class="material-symbols-outlined font-bold">mail</span>
+            </a>
+        </div>
+        </section>
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .project-card:hover .hover-reveal {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+</style>

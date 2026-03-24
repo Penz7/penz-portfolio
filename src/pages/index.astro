@@ -46,7 +46,7 @@ import MotionReveal from "../components/MotionReveal.tsx";
       <div class="lg:col-span-5 relative group">
         <div class="absolute -inset-4 bg-gradient-to-r from-primary/10 to-transparent blur-3xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
         <div class="relative glass-card rounded-[2rem] p-2 overflow-hidden aspect-square lg:aspect-[4/5] max-w-[400px] mx-auto">
-            <Image alt="Professional portrait of Mobile Developer Cap Tan Dat" class="w-full h-full object-cover rounded-[1.8rem]" src={avatarImage} />
+            <Image alt="Professional portrait of Mobile Developer Cap Tan Dat" class="w-full h-full object-cover rounded-[1.8rem]" src={avatarImage} loading="eager" fetchpriority="high" />
             <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent flex flex-col justify-end p-8">
                 <div class="h-1 w-12 bg-primary rounded-full mb-4"></div>
                 <p class="text-sm font-sans uppercase tracking-widest text-primary mb-1">Mobile Developer</p>

@@ -1,0 +1,271 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import MotionReveal from "../../components/MotionReveal.tsx";
+import { fetchProjects } from "../../utils/fetchProjects";
+
+const allProjects = await fetchProjects();
+const projectsJson = JSON.stringify(allProjects);
+const PAGE_SIZE = 4;
+---
+
+<BaseLayout title="Projects | DatC.DEV">
+  <Nav />
+  
+  <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto flex-grow w-full">
+    <!-- Hero Section -->
+    <header class="mb-20 max-w-3xl">
+      <MotionReveal client:load delay={0.1}>
+        <h1 class="text-5xl md:text-7xl font-sans font-extrabold tracking-tighter text-on-surface mb-6 leading-tight">
+            Crafting <span class="text-primary italic">Seamless</span> Mobile Experiences.
+        </h1>
+      </MotionReveal>
+      <MotionReveal client:load delay={0.2}>
+        <p class="text-lg text-on-surface-variant leading-relaxed font-sans">
+            A selection of high-performance mobile applications built with modern engineering practices and scalable architecture. Focused on Flutter and Android (Kotlin), with a strong emphasis on continuous learning and improvement.
+        </p>
+      </MotionReveal>
+    </header>
+
+    <!-- Project Grid (client-side paginated) -->
+    <div id="projects-section">
+      <!-- Loading skeleton -->
+      <div id="projects-loading" class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+        {[1,2,3,4].map(() => (
+          <div class="skeleton-card rounded-3xl overflow-hidden border border-white/5 bg-surface-container-low">
+            <div class="p-8 md:p-12 pb-0">
+              <div class="flex gap-2 mb-6">
+                <span class="skeleton-pulse h-5 w-16 rounded-sm"></span>
+                <span class="skeleton-pulse h-5 w-20 rounded-sm"></span>
+              </div>
+              <div class="skeleton-pulse h-9 w-3/4 rounded-lg mb-4"></div>
+              <div class="skeleton-pulse h-4 w-full rounded mb-2"></div>
+              <div class="skeleton-pulse h-4 w-2/3 rounded"></div>
+            </div>
+            <div class="h-[450px] mt-4 px-8 flex justify-center items-end pb-8">
+              <div class="skeleton-pulse w-full max-w-[280px] h-full rounded-[2.5rem]"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Actual grid (hidden until JS renders) -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 projects-grid-hidden"></div>
+
+      <!-- Pagination -->
+      <nav id="pagination-nav" class="mt-20 hidden flex-col items-center gap-4" aria-label="Pagination">
+        <div id="pagination-btns" class="flex items-center gap-3"></div>
+        <p id="pagination-info" class="text-on-surface-variant/50 font-sans text-sm"></p>
+      </nav>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="w-full relative">
+      <section class="mt-32 p-12 bg-surface rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 border border-outline-variant/10">
+        <div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-[100px]"></div>
+        <div class="relative z-10">
+          <h2 class="text-4xl font-sans font-extrabold text-on-surface mb-4 tracking-tight">Need a bespoke mobile solution?</h2>
+          <p class="text-on-surface-variant max-w-lg font-sans">I'm currently accepting new projects. Let's discuss how we can build something exceptional together.</p>
+        </div>
+        <div class="relative z-10">
+          <a href="/contact" class="bg-primary text-surface font-sans font-bold px-10 py-4 rounded-full flex items-center gap-3 hover:-translate-y-1 transition-transform shadow-[0_10px_30px_-10px_rgba(57,255,20,0.3)]">
+            Start a Discussion <span class="material-symbols-outlined font-bold">mail</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<!-- Embed data & pagination logic -->
+<script define:vars={{ projectsJson, PAGE_SIZE }}>
+  const allProjects = JSON.parse(projectsJson);
+  const grid = document.getElementById('projects-grid');
+  const loading = document.getElementById('projects-loading');
+  const paginationNav = document.getElementById('pagination-nav');
+  const paginationBtns = document.getElementById('pagination-btns');
+  const paginationInfo = document.getElementById('pagination-info');
+  let currentPage = 1;
+  const totalPages = Math.ceil(allProjects.length / PAGE_SIZE);
+
+    function buildProjectCard(project) {
+    const techTags = project.techstack
+      ? project.techstack.split(',')
+          .filter(t => t.trim())
+          .map(t => `<span class="bg-surface-container-high text-primary text-[10px] font-sans font-medium uppercase tracking-[0.1em] px-3 py-1 rounded-sm">${t.trim()}</span>`)
+          .join('')
+      : '';
+
+    const imageHtml = project.image && (project.image.startsWith('http') || project.image.startsWith('/'))
+      ? `<img class="w-full h-full object-cover grayscale brightness-75 contrast-125" alt="${project.title}" src="${project.image}" loading="lazy" />`
+      : `<div class="w-full h-full bg-surface-container-highest flex items-center justify-center"><span class="material-symbols-outlined text-4xl text-primary/20">image</span></div>`;
+
+    const githubLink = project.link_github
+      ? `<a href="${project.link_github}" target="_blank" rel="noopener noreferrer" class="text-on-surface font-sans font-bold px-8 py-3 flex items-center gap-2 hover:text-primary transition-colors cursor-pointer z-30 pointer-events-auto">
+           <i class="devicon-github-original text-xl"></i> Github Repo
+         </a>`
+      : '';
+    
+    const detailsBtn = project.link_github
+      ? `<a href="${project.link_github}" target="_blank" rel="noopener noreferrer" class="bg-primary text-surface font-sans font-bold px-8 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform z-30">
+           View Project Details <span class="material-symbols-outlined text-lg">arrow_outward</span>
+         </a>`
+      : `<button class="bg-primary text-surface font-sans font-bold px-8 py-3 rounded-full flex items-center gap-2 opacity-50 cursor-not-allowed">
+           No Details Available
+         </button>`;
+
+    return `
+      <div class="flex project-item">
+        <div class="project-card w-full group relative bg-surface-container-low rounded-3xl overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(57,255,20,0.12)] border border-white/5" style="will-change: box-shadow;">
+          <div class="p-8 md:p-12 pb-0">
+            <div class="flex flex-wrap gap-2 mb-6">${techTags}</div>
+            <h3 class="text-3xl font-sans font-bold text-on-surface mb-4">${project.title}</h3>
+            <p class="text-on-surface-variant mb-6 line-clamp-2 font-sans">${project.description || ''}</p>
+          </div>
+          <div class="relative h-[450px] mt-4 flex justify-center items-end overflow-hidden px-8">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent z-10"></div>
+            <div class="absolute w-[200px] h-[200px] bg-primary/8 rounded-full blur-[40px] bottom-20 opacity-70"></div>
+            <div class="relative w-full max-w-[280px] aspect-[9/19.5] bg-[#050505] rounded-[2.5rem] border-[8px] border-surface-container-highest shadow-2xl overflow-hidden">
+              ${imageHtml}
+              <div class="absolute inset-0 bg-primary/20 mix-blend-color z-10"></div>
+            </div>
+            <div class="hover-reveal opacity-0 translate-y-2 transition-opacity duration-200 absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 bg-surface/80">
+              ${detailsBtn}
+              ${githubLink}
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function renderPage(page, animate = true) {
+    const start = (page - 1) * PAGE_SIZE;
+    const pageProjects = allProjects.slice(start, start + PAGE_SIZE);
+
+    if (animate) {
+      // Fade out
+      grid.style.opacity = '0';
+      grid.style.transform = 'translateY(12px)';
+    }
+
+    setTimeout(() => {
+      grid.innerHTML = pageProjects.length
+        ? pageProjects.map(buildProjectCard).join('')
+        : `<div class="col-span-1 md:col-span-2 text-center py-20 text-on-surface-variant font-sans bg-surface-container-low rounded-3xl border border-white/5">No projects available yet.</div>`;
+
+      // Fade in
+      requestAnimationFrame(() => {
+        grid.style.opacity = '1';
+        grid.style.transform = 'translateY(0)';
+      });
+    }, animate ? 200 : 0);
+
+    renderPagination(page);
+  }
+
+  function renderPagination(page) {
+    if (totalPages <= 1) return;
+
+    const prevDisabled = page <= 1;
+    const nextDisabled = page >= totalPages;
+
+    const prevBtn = `
+      <button id="btn-prev" data-page="${page - 1}"
+        class="flex items-center gap-2 px-5 py-2.5 rounded-full border font-sans text-sm transition-all duration-200 ${
+          prevDisabled
+            ? 'border-outline-variant/10 text-on-surface-variant/30 cursor-not-allowed'
+            : 'border-outline-variant/30 text-on-surface-variant hover:border-primary hover:text-primary'
+        }"
+        ${prevDisabled ? 'disabled' : ''}>
+        <span class="material-symbols-outlined text-base">arrow_back</span> Prev
+      </button>`;
+
+    const pageNums = Array.from({ length: totalPages }, (_, i) => i + 1)
+      .map(n => `
+        <button data-page="${n}"
+          class="page-btn w-10 h-10 rounded-full flex items-center justify-center font-sans text-sm font-medium transition-all duration-200 ${
+            n === page
+              ? 'bg-primary text-surface shadow-[0_0_20px_rgba(57,255,20,0.3)]'
+              : 'border border-outline-variant/30 text-on-surface-variant hover:border-primary hover:text-primary'
+          }">
+          ${n}
+        </button>`).join('');
+
+    const nextBtn = `
+      <button id="btn-next" data-page="${page + 1}"
+        class="flex items-center gap-2 px-5 py-2.5 rounded-full border font-sans text-sm transition-all duration-200 ${
+          nextDisabled
+            ? 'border-outline-variant/10 text-on-surface-variant/30 cursor-not-allowed'
+            : 'border-outline-variant/30 text-on-surface-variant hover:border-primary hover:text-primary'
+        }"
+        ${nextDisabled ? 'disabled' : ''}>
+        Next <span class="material-symbols-outlined text-base">arrow_forward</span>
+      </button>`;
+
+    paginationBtns.innerHTML = prevBtn + pageNums + nextBtn;
+    paginationInfo.textContent = `Page ${page} of ${totalPages} · ${allProjects.length} projects total`;
+    paginationNav.classList.remove('hidden');
+    paginationNav.classList.add('flex');
+
+    // Bind events
+    paginationBtns.querySelectorAll('button[data-page]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const p = parseInt(btn.dataset.page);
+        if (!btn.disabled && p >= 1 && p <= totalPages) {
+          currentPage = p;
+          renderPage(p);
+          // Scroll projects section into view smoothly
+          document.getElementById('projects-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  }
+
+  // Init: hide skeleton, show grid
+  function init() {
+    loading.style.display = 'none';
+    grid.classList.remove('projects-grid-hidden');
+    grid.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+    renderPage(1, false);
+  }
+
+  // Small delay so page feels snappy but skeleton was visible
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(init, 400));
+  } else {
+    setTimeout(init, 400);
+  }
+</script>
+
+<style>
+  /* Skeleton shimmer */
+  @keyframes shimmer {
+    0% { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+  }
+  .skeleton-pulse {
+    background: linear-gradient(90deg, 
+      rgba(255,255,255,0.03) 25%, 
+      rgba(255,255,255,0.08) 50%, 
+      rgba(255,255,255,0.03) 75%
+    );
+    background-size: 800px 100%;
+    animation: shimmer 1.5s infinite linear;
+    display: block;
+  }
+
+  /* Grid hidden initially */
+  .projects-grid-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Hover reveal on project cards */
+  .project-card:hover .hover-reveal {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+</style>
