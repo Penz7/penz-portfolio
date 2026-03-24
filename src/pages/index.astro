@@ -44,17 +44,15 @@ import MotionReveal from "../components/MotionReveal.tsx";
       
       <!-- Hero Image / Mockup -->
       <div class="lg:col-span-5 relative group">
-        <MotionReveal client:load delay={0.3} x={40} y={0}>
-            <div class="absolute -inset-4 bg-gradient-to-r from-primary/10 to-transparent blur-3xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
-            <div class="relative glass-card rounded-[2rem] p-2 overflow-hidden aspect-square lg:aspect-[4/5] max-w-[400px] mx-auto">
-                <Image alt="Professional portrait of Mobile Developer Cap Tan Dat" class="w-full h-full object-cover rounded-[1.8rem]" src={avatarImage} />
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent flex flex-col justify-end p-8">
-                    <div class="h-1 w-12 bg-primary rounded-full mb-4"></div>
-                    <p class="text-sm font-sans uppercase tracking-widest text-primary mb-1">Mobile Developer</p>
-                    <h3 class="font-sans font-bold text-xl">Cap Tan Dat</h3>
-                </div>
+        <div class="absolute -inset-4 bg-gradient-to-r from-primary/10 to-transparent blur-3xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
+        <div class="relative glass-card rounded-[2rem] p-2 overflow-hidden aspect-square lg:aspect-[4/5] max-w-[400px] mx-auto">
+            <Image alt="Professional portrait of Mobile Developer Cap Tan Dat" class="w-full h-full object-cover rounded-[1.8rem]" src={avatarImage} />
+            <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent flex flex-col justify-end p-8">
+                <div class="h-1 w-12 bg-primary rounded-full mb-4"></div>
+                <p class="text-sm font-sans uppercase tracking-widest text-primary mb-1">Mobile Developer</p>
+                <h3 class="font-sans font-bold text-xl">Cap Tan Dat</h3>
             </div>
-        </MotionReveal>
+        </div>
       </div>
     </section>
     
@@ -101,7 +99,7 @@ import MotionReveal from "../components/MotionReveal.tsx";
     <section class="max-w-7xl mx-auto px-8 py-24">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
             <!-- Large About Card -->
-            <MotionReveal client:visible delay={0.1} className="md:col-span-2 flex">
+            <div class="md:col-span-2 flex">
                 <Card variant="glass" class="w-full flex-1 flex flex-col justify-between">
                     <div>
                         <h2 class="font-sans font-extrabold text-3xl mb-6">Growth Mindset <br/><span class="text-primary">Technical Precision</span></h2>
@@ -113,28 +111,28 @@ import MotionReveal from "../components/MotionReveal.tsx";
                         <div class="px-4 py-2 bg-surface-container rounded-lg text-xs font-sans tracking-[0.1em] uppercase text-on-surface-variant border border-primary/10">2+ Years Exp</div>
                     </div>
                 </Card>
-            </MotionReveal>
+            </div>
             
             <!-- Small Stat Card 1 -->
-            <MotionReveal client:visible delay={0.2} className="flex">
+            <div class="flex">
                 <Card variant="surface" glow={true} class="w-full flex-1 flex flex-col justify-center text-center items-center">
                     <span class="material-symbols-outlined text-primary text-4xl mb-4" data-icon="speed">speed</span>
                     <h3 class="font-sans font-bold text-2xl mb-1 text-on-surface group-hover:text-primary transition-colors">Optimized</h3>
                     <p class="text-sm text-on-surface-variant font-sans uppercase tracking-[0.1em]">APP PERFORMANCE</p>
                 </Card>
-            </MotionReveal>
+            </div>
             
             <!-- Small Stat Card 2 -->
-            <MotionReveal client:visible delay={0.3} className="flex">
+            <div class="flex">
                 <Card variant="surface" glow={true} class="w-full flex-1 flex flex-col justify-center text-center items-center">
                     <span class="material-symbols-outlined text-primary text-4xl mb-4" data-icon="code">code</span>
                     <h3 class="font-sans font-bold text-2xl mb-1 text-on-surface group-hover:text-primary transition-colors">Clean</h3>
                     <p class="text-sm text-on-surface-variant font-sans uppercase tracking-[0.1em]">CODE STRUCTURE</p>
                 </Card>
-            </MotionReveal>
+            </div>
             
             <!-- New Personal Philosophy Section (Replaces Featured Project & Location Cards) -->
-            <MotionReveal client:visible delay={0.1} className="md:col-span-4">
+            <div class="md:col-span-4">
                 <div class="glass-card rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden group">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] -mr-32 -mt-32"></div>
                     <div class="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 blur-[80px] -ml-32 -mb-32"></div>
@@ -188,7 +186,7 @@ import MotionReveal from "../components/MotionReveal.tsx";
                         </div>
                     </div>
                 </div>
-            </MotionReveal>
+            </div>
         </div>
     </section>
   </main>

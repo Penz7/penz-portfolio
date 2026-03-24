@@ -28,7 +28,7 @@ import MotionReveal from "../components/MotionReveal.tsx";
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
       
       <!-- Project 1 -->
-      <MotionReveal client:visible delay={0.1} className="flex">
+      <div class="flex">
         <div class="project-card w-full group relative bg-surface-container-low rounded-3xl overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(57,255,20,0.12)] border border-white/5" style="will-change: box-shadow;">
             <div class="p-8 md:p-12 pb-0">
             <div class="flex flex-wrap gap-2 mb-6">
@@ -56,10 +56,10 @@ import MotionReveal from "../components/MotionReveal.tsx";
             </div>
             </div>
         </div>
-      </MotionReveal>
+      </div>
       
       <!-- Project 2 -->
-      <MotionReveal client:visible delay={0.2} className="flex">
+      <div class="flex">
         <div class="project-card w-full group relative bg-surface-container-low rounded-3xl overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(57,255,20,0.12)] border border-white/5" style="will-change: box-shadow;">
             <div class="p-8 md:p-12 pb-0">
             <div class="flex flex-wrap gap-2 mb-6">
@@ -86,10 +86,10 @@ import MotionReveal from "../components/MotionReveal.tsx";
             </div>
             </div>
         </div>
-      </MotionReveal>
+      </div>
       
       <!-- Project 3 -->
-      <MotionReveal client:visible delay={0.1} className="flex">
+      <div class="flex">
         <div class="project-card w-full group relative bg-surface-container-low rounded-3xl overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(57,255,20,0.12)] border border-white/5" style="will-change: box-shadow;">
             <div class="p-8 md:p-12 pb-0">
             <div class="flex flex-wrap gap-2 mb-6">
@@ -116,10 +116,10 @@ import MotionReveal from "../components/MotionReveal.tsx";
             </div>
             </div>
         </div>
-      </MotionReveal>
+      </div>
       
       <!-- Project 4 -->
-      <MotionReveal client:visible delay={0.2} className="flex">
+      <div class="flex">
         <div class="project-card w-full group relative bg-surface-container-low rounded-3xl overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(57,255,20,0.12)] border border-white/5" style="will-change: box-shadow;">
             <div class="p-8 md:p-12 pb-0">
             <div class="flex flex-wrap gap-2 mb-6">
@@ -145,12 +145,12 @@ import MotionReveal from "../components/MotionReveal.tsx";
             </div>
             </div>
         </div>
-      </MotionReveal>
+      </div>
       
     </div>
     
     <!-- Secondary CTA Section -->
-    <MotionReveal client:visible delay={0.2} width="100%">
+    <div class="w-full relative">
         <section class="mt-32 p-12 bg-surface rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 border border-outline-variant/10">
         <div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-[100px]"></div>
         <div class="relative z-10">
@@ -163,7 +163,7 @@ import MotionReveal from "../components/MotionReveal.tsx";
             </a>
         </div>
         </section>
-    </MotionReveal>
+    </div>
   </main>
   
   <Footer />

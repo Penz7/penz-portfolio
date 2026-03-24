@@ -26,7 +26,7 @@ import MotionReveal from "../components/MotionReveal.tsx";
     <!-- Technical Skills Grid -->
     <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-32">
         <!-- Mobile Skills Card -->
-        <MotionReveal client:visible delay={0.1} className="flex h-full lg:col-span-1">
+        <div class="flex h-full lg:col-span-1">
             <div class="skill-card bg-surface-container-low rounded-xl p-8 border border-outline-variant/50 hover:border-primary/60 transition-colors group w-full">
                 <div class="flex items-center gap-4 mb-8">
                     <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
@@ -82,10 +82,10 @@ import MotionReveal from "../components/MotionReveal.tsx";
                     <span class="px-3 py-1 bg-surface-container text-[10px] font-sans uppercase tracking-[0.1em] text-on-surface-variant border border-white/5">BLoC</span>
                 </div>
             </div>
-        </MotionReveal>
+        </div>
 
         <!-- Web Card -->
-        <MotionReveal client:visible delay={0.2} className="flex h-full lg:col-span-1">
+        <div class="flex h-full lg:col-span-1">
             <div class="skill-card bg-surface-container-low rounded-xl p-8 border border-outline-variant/50 hover:border-primary/60 transition-colors group w-full">
                 <div class="flex items-center gap-4 mb-8">
                     <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
@@ -140,10 +140,10 @@ import MotionReveal from "../components/MotionReveal.tsx";
                     <span class="px-3 py-1 bg-surface-container text-[10px] font-sans uppercase tracking-[0.1em] text-on-surface-variant border border-white/5">HTML/CSS</span>
                 </div>
             </div>
-        </MotionReveal>
+        </div>
 
         <!-- Backend Card -->
-        <MotionReveal client:visible delay={0.3} className="flex h-full lg:col-span-1">
+        <div class="flex h-full lg:col-span-1">
             <div class="skill-card bg-surface-container-low rounded-xl p-8 border border-outline-variant/50 hover:border-primary/60 transition-colors group w-full">
                 <div class="flex items-center gap-4 mb-8">
                     <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
@@ -211,7 +211,7 @@ import MotionReveal from "../components/MotionReveal.tsx";
                     <span class="px-3 py-1 bg-surface-container text-[10px] font-sans uppercase tracking-[0.1em] text-on-surface-variant border border-white/5">JWT</span>
                 </div>
             </div>
-        </MotionReveal>
+        </div>
     </section>
 
     <!-- Experience Timeline Section -->
@@ -225,7 +225,7 @@ import MotionReveal from "../components/MotionReveal.tsx";
         
         <div class="space-y-12">
             <!-- Role 1 -->
-            <MotionReveal client:visible delay={0.1}>
+            <div>
                 <div class="relative flex flex-col md:flex-row md:justify-between items-start md:items-center group">
                     <div class="md:w-5/12 order-2 md:order-1">
                         <div class="bg-surface-container p-8 rounded-xl border border-outline-variant group-hover:bg-surface-container-high transition-colors">
@@ -246,10 +246,10 @@ import MotionReveal from "../components/MotionReveal.tsx";
                         <span class="text-on-surface-variant/20 font-sans font-black text-6xl italic select-none">2024</span>
                     </div>
                 </div>
-            </MotionReveal>
+            </div>
 
             <!-- Role 2 -->
-            <MotionReveal client:visible delay={0.2}>
+            <div>
                 <div class="relative flex flex-col md:flex-row md:justify-between items-start md:items-center group">
                     <div class="md:w-5/12 order-3 md:order-3">
                         <div class="bg-surface-container p-8 rounded-xl border border-outline-variant group-hover:bg-surface-container-high transition-colors">
@@ -270,7 +270,7 @@ import MotionReveal from "../components/MotionReveal.tsx";
                         <span class="text-on-surface-variant/20 font-sans font-black text-6xl italic select-none">2023</span>
                     </div>
                 </div>
-            </MotionReveal>
+            </div>
             
         </div>
     </section>
