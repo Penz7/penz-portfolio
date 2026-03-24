@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import MotionReveal from "../components/MotionReveal.tsx";
 ---
 
 <BaseLayout title="Contact | DatC.DEV">
@@ -18,19 +19,23 @@ import Footer from "../components/Footer.astro";
     <div class="max-w-7xl mx-auto relative z-10">
         <!-- Header Section -->
         <div class="mb-16 md:mb-24">
-            <h1 class="font-sans text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 text-on-surface">
-                Let's build something <br/>
-                <span class="text-gradient">amazing together!</span>
-            </h1>
-            <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl font-light leading-relaxed font-sans">
-                Have a concept in mind? I focus on turning ideas into refined, meaningful experiences — and I’m always open to sharing insights or exploring new possibilities together.
-            </p>
+            <MotionReveal client:load delay={0.1}>
+                <h1 class="font-sans text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 text-on-surface">
+                    Let's build something <br/>
+                    <span class="text-gradient">amazing together!</span>
+                </h1>
+            </MotionReveal>
+            <MotionReveal client:load delay={0.2}>
+                <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl font-light leading-relaxed font-sans">
+                    Have a concept in mind? I focus on turning ideas into refined, meaningful experiences — and I’m always open to sharing insights or exploring new possibilities together.
+                </p>
+            </MotionReveal>
         </div>
 
         <!-- Content Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <!-- Contact Form Column -->
-            <div class="lg:col-span-7 z-20">
+            <MotionReveal client:visible delay={0.2} className="lg:col-span-7 z-20">
                 <div class="glass-panel p-8 md:p-12 rounded-3xl border border-outline-variant/10 shadow-2xl relative">
                     <form id="contactForm" action="#" class="space-y-8" novalidate>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -59,10 +64,10 @@ import Footer from "../components/Footer.astro";
                         </div>
                     </form>
                 </div>
-            </div>
+            </MotionReveal>
 
             <!-- Info Column -->
-            <div class="lg:col-span-5 space-y-8 z-20">
+            <MotionReveal client:visible delay={0.4} className="lg:col-span-5 space-y-8 z-20">
                 <!-- Location Card -->
                 <div class="bg-surface-container-low rounded-3xl overflow-hidden group border border-outline-variant/10">
                     <div class="h-64 relative overflow-hidden transition-all duration-700 bg-surface">
@@ -96,7 +101,7 @@ import Footer from "../components/Footer.astro";
                         </div>
                     </div>
                 </div>
-            </div>
+            </MotionReveal>
         </div>
     </div>
   </main>
