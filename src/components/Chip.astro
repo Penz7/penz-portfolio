@@ -1,0 +1,18 @@
+---
+interface Props {
+  text: string;
+  icon?: string; // Material symbol name
+  class?: string;
+}
+
+const { text, icon, class: className = '' } = Astro.props;
+---
+
+<div class={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/20 ${className}`}>
+  {icon ? (
+    <span class="material-symbols-outlined text-[1rem] text-primary">{icon}</span>
+  ) : (
+    <span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#39FF14]"></span>
+  )}
+  <span class="text-xs font-sans uppercase tracking-[0.1em] text-on-surface-variant">{text}</span>
+</div>

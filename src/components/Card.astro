@@ -1,0 +1,26 @@
+---
+interface Props {
+  variant?: 'glass' | 'surface' | 'lowest';
+  class?: string;
+  glow?: boolean;
+}
+
+const { variant = 'surface', class: className = '', glow = false } = Astro.props;
+
+let baseClass = "rounded-3xl p-8 transition-all group overflow-hidden relative ";
+
+if (variant === 'glass') {
+  baseClass += "bg-surface-container-high/40 backdrop-blur-md border border-primary/10 ";
+} else if (variant === 'lowest') {
+  baseClass += "bg-surface-container-lowest border border-outline-variant/10 hover:border-primary/30 ";
+} else {
+  baseClass += "bg-surface-container-low border border-outline-variant/10 hover:border-primary/30 ";
+}
+---
+
+<div class={`${baseClass} ${className}`}>
+  {glow && (
+    <div class="absolute -top-10 -left-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none"></div>
+  )}
+  <slot />
+</div>

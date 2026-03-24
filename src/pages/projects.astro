@@ -1,0 +1,155 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="Projects | DatC.DEV">
+  <Nav />
+  
+  <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto flex-grow w-full">
+    <!-- Hero Section -->
+    <header class="mb-20 max-w-3xl">
+      <h1 class="text-5xl md:text-7xl font-sans font-extrabold tracking-tighter text-on-surface mb-6 leading-tight">
+        Crafting <span class="text-primary italic">Seamless</span> Mobile Experiences.
+      </h1>
+      <p class="text-lg text-on-surface-variant leading-relaxed font-sans">
+        A selection of high-performance mobile applications built with modern engineering practices and scalable architecture. Focused on Flutter and Android (Kotlin), with a strong emphasis on continuous learning and improvement.
+      </p>
+    </header>
+    
+    <!-- Project Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+      
+      <!-- Project 1 -->
+      <div class="project-card group relative bg-surface-container-low rounded-3xl overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(57,255,20,0.12)] border border-white/5" style="will-change: box-shadow;">
+        <div class="p-8 md:p-12 pb-0">
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="bg-surface-container-high text-primary text-[10px] font-sans font-medium uppercase tracking-[0.1em] px-3 py-1 rounded-sm">SwiftUI</span>
+            <span class="bg-surface-container-high text-primary text-[10px] font-sans font-medium uppercase tracking-[0.1em] px-3 py-1 rounded-sm">Combine</span>
+            <span class="bg-surface-container-high text-primary text-[10px] font-sans font-medium uppercase tracking-[0.1em] px-3 py-1 rounded-sm">HealthKit</span>
+          </div>
+          <h3 class="text-3xl font-sans font-bold text-on-surface mb-4">Aura Health</h3>
+          <p class="text-on-surface-variant mb-8 line-clamp-2 font-sans">Real-time biometric monitoring and neural-rhythm sleep tracking for high-performance athletes.</p>
+        </div>
+        <div class="relative h-[450px] mt-4 flex justify-center items-end overflow-hidden px-8">
+          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent z-10"></div>
+          <div class="absolute w-[200px] h-[200px] bg-primary/8 rounded-full blur-[40px] bottom-20 opacity-70"></div>
+          <div class="relative w-full max-w-[280px] aspect-[9/19.5] bg-[#050505] rounded-[2.5rem] border-[8px] border-surface-container-highest shadow-2xl overflow-hidden">
+            <Image class="w-full h-full object-cover grayscale brightness-75 contrast-125" alt="Aura Health" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe76URLKZHnSJ5ARn2chFfYGYSeRAbYBWgpJFfg5Nazs-Tc1FSKBw2DhhEyRdPm7l1F_Kx5vg_ayuXb7pJQ8pHPh0dha0mlsCGbFxrhZnOMnUUOIImDG9ewv_cfOuM9ODu-5Vg3B5dEPyGNlkYjLNUABRarSSXZkaTovS7g-DMGhD8_poTZSpnQLTrjvGemfKlzXnBcECwjRcN6u_mNZd1w1pXFQK0rIRNVQCgb-naUgzOaNjJ0iS78gLEfusz-ocOkpEIUeDhk60" inferSize={true} />
+            <div class="absolute inset-0 bg-primary/20 mix-blend-color z-10"></div>
+          </div>
+          <div class="hover-reveal opacity-0 translate-y-2 transition-opacity duration-200 absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 bg-surface/80">
+            <button class="bg-primary text-surface font-sans font-bold px-8 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform">
+              View Project Details <span class="material-symbols-outlined text-lg">arrow_outward</span>
+            </button>
+            <button class="text-on-surface font-sans font-bold px-8 py-3 flex items-center gap-2 hover:text-primary transition-colors">
+              <i class="devicon-github-original text-xl"></i> Github Repo
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 2 -->
+      <div class="project-card group relative bg-surface-container-low rounded-3xl overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(57,255,20,0.12)] border border-white/5" style="will-change: box-shadow;">
+        <div class="p-8 md:p-12 pb-0">
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="bg-surface-container-high text-primary text-[10px] font-sans font-medium uppercase tracking-[0.1em] px-3 py-1 rounded-sm">Kotlin</span>
+            <span class="bg-surface-container-high text-primary text-[10px] font-sans font-medium uppercase tracking-[0.1em] px-3 py-1 rounded-sm">Jetpack Compose</span>
+          </div>
+          <h3 class="text-3xl font-sans font-bold text-on-surface mb-4">Zenith Fintech</h3>
+          <p class="text-on-surface-variant mb-8 line-clamp-2 font-sans">High-frequency cryptocurrency trading interface with zero-latency price updates and cold-storage integration.</p>
+        </div>
+        <div class="relative h-[450px] mt-4 flex justify-center items-end overflow-hidden px-8">
+          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent z-10"></div>
+          <div class="absolute w-[200px] h-[200px] bg-primary/8 rounded-full blur-[40px] bottom-20 opacity-70"></div>
+          <div class="relative w-full max-w-[280px] aspect-[9/19.5] bg-[#050505] rounded-[2.5rem] border-[8px] border-surface-container-highest shadow-2xl overflow-hidden">
+            <Image class="w-full h-full object-cover grayscale brightness-75 contrast-125" alt="Zenith Fintech" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7i2nB7CgRZe6DvXLnHwZUb5vwK37OvIsIInuNgMNSmKcwwaDZAocWVjMjq_iRxsjniadcdD4Y3QmOBrSH9Wv7Wm5IHnmejkcb5dJii-ecjrYbo8DDifTI8B9IovJKyyqoa8ulP1Fnz_dznRo8F3eGfZdGZk1TpFkVo-6IQjBbTPgSEL8JXKPCbHjzL8AuFsLo9MAZHKZ0P1gJHXpFeSQndkH8z_99xFDhViL51GvC0ScZmdULgT6PHZzYmFBBNlKaZzgoIhkw9QQ" inferSize={true} />
+            <div class="absolute inset-0 bg-primary/20 mix-blend-color z-10"></div>
+          </div>
+          <div class="hover-reveal opacity-0 translate-y-2 transition-opacity duration-200 absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 bg-surface/80">
+            <button class="bg-primary text-surface font-sans font-bold px-8 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform">
+              View Project Details <span class="material-symbols-outlined text-lg">arrow_outward</span>
+            </button>
+            <button class="text-on-surface font-sans font-bold px-8 py-3 flex items-center gap-2 hover:text-primary transition-colors">
+              <i class="devicon-github-original text-xl"></i> Github Repo
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 3 -->
+      <div class="project-card group relative bg-surface-container-low rounded-3xl overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(57,255,20,0.12)] border border-white/5" style="will-change: box-shadow;">
+        <div class="p-8 md:p-12 pb-0">
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="bg-surface-container-high text-primary text-[10px] font-sans font-medium uppercase tracking-[0.1em] px-3 py-1 rounded-sm">Flutter</span>
+            <span class="bg-surface-container-high text-primary text-[10px] font-sans font-medium uppercase tracking-[0.1em] px-3 py-1 rounded-sm">Dart</span>
+          </div>
+          <h3 class="text-3xl font-sans font-bold text-on-surface mb-4">Vibe Streaming</h3>
+          <p class="text-on-surface-variant mb-8 line-clamp-2 font-sans">A social audio platform for synchronized music sessions and high-fidelity collaborative playlisting.</p>
+        </div>
+        <div class="relative h-[450px] mt-4 flex justify-center items-end overflow-hidden px-8">
+          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent z-10"></div>
+          <div class="absolute w-[200px] h-[200px] bg-primary/8 rounded-full blur-[40px] bottom-20 opacity-70"></div>
+          <div class="relative w-full max-w-[280px] aspect-[9/19.5] bg-[#050505] rounded-[2.5rem] border-[8px] border-surface-container-highest shadow-2xl overflow-hidden">
+            <Image class="w-full h-full object-cover grayscale brightness-75 contrast-125" alt="Vibe Streaming" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByRbRVDaR1SCejixEEB29-G_0mGvgfA10B5mHL425G0Cd3j6ueqaEwUkltU86s2XItDNoppIGvP0VV_VVSYnbw8DeMvvzg48CzmoEg81V-Fnk-belhoqyOM9hUK-lFCZof1_Bcfu1mI3y3aTxMDBXQ1kov4pdP25xyPOMpPFqM4D6j0GfoLcN-mKbieUDGGIkZ78EoX9hjd73L3ti2_Ta4Fb04RIfUcXM8kXwr8tXGw5yKebA5CLO7UBtor1SEno64KpWDtlFRHik" inferSize={true} />
+            <div class="absolute inset-0 bg-primary/20 mix-blend-color z-10"></div>
+          </div>
+          <div class="hover-reveal opacity-0 translate-y-2 transition-opacity duration-200 absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 bg-surface/80">
+            <button class="bg-primary text-surface font-sans font-bold px-8 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform">
+              View Project Details <span class="material-symbols-outlined text-lg">arrow_outward</span>
+            </button>
+            <button class="text-on-surface font-sans font-bold px-8 py-3 flex items-center gap-2 hover:text-primary transition-colors">
+              <i class="devicon-github-original text-xl"></i> Github Repo
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 4 -->
+      <div class="project-card group relative bg-surface-container-low rounded-3xl overflow-hidden transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(57,255,20,0.12)] border border-white/5" style="will-change: box-shadow;">
+        <div class="p-8 md:p-12 pb-0">
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="bg-surface-container-high text-primary text-[10px] font-sans font-medium uppercase tracking-[0.1em] px-3 py-1 rounded-sm">React Native</span>
+          </div>
+          <h3 class="text-3xl font-sans font-bold text-on-surface mb-4">Stellar Logistics</h3>
+          <p class="text-on-surface-variant mb-8 line-clamp-2 font-sans">Enterprise-grade fleet management system with real-time GPS tracking and dynamic routing algorithms.</p>
+        </div>
+        <div class="relative h-[450px] mt-4 flex justify-center items-end overflow-hidden px-8">
+          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent z-10"></div>
+          <div class="absolute w-[200px] h-[200px] bg-primary/8 rounded-full blur-[40px] bottom-20 opacity-70"></div>
+          <div class="relative w-full max-w-[280px] aspect-[9/19.5] bg-[#050505] rounded-[2.5rem] border-[8px] border-surface-container-highest shadow-2xl overflow-hidden">
+            <Image class="w-full h-full object-cover grayscale brightness-75 contrast-125" alt="Stellar Logistics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcz0HXIkf05yRE7I20W5MMEJzNpwM92PMBuGEn4gRT6cgbU2KcCwckg_EIN0v1NRdjgRkIXl6yuH612MoodBrD7W8H6cxatauiuI5KfnZ0GwKozjljT0OfLdNU9bmeFXchMiHywnGpTKwbOxRwcZBeeFrti8GBcZwnheYFYcKclC1dT-Vw1O-Xzq5sOXUrdIO4d0qQEKnnutlz17tkRSiUZ9YAAKpDvjbK_p8XYtHk8uEbf7oixktZOhKEmbieMtYjRdIDGJRpVsU" inferSize={true} />
+            <div class="absolute inset-0 bg-primary/20 mix-blend-color z-10"></div>
+          </div>
+          <div class="hover-reveal opacity-0 translate-y-2 transition-opacity duration-200 absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 bg-surface/80">
+            <button class="bg-primary text-surface font-sans font-bold px-8 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform">
+              View Project Details <span class="material-symbols-outlined text-lg">arrow_outward</span>
+            </button>
+            <button class="text-on-surface font-sans font-bold px-8 py-3 flex items-center gap-2 hover:text-primary transition-colors">
+              <i class="devicon-github-original text-xl"></i> Github Repo
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- Secondary CTA Section -->
+    <section class="mt-32 p-12 bg-surface rounded-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 border border-outline-variant/10">
+      <div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-[100px]"></div>
+      <div class="relative z-10">
+        <h2 class="text-4xl font-sans font-extrabold text-on-surface mb-4 tracking-tight">Need a bespoke mobile solution?</h2>
+        <p class="text-on-surface-variant max-w-lg font-sans">I'm currently accepting new projects. Let's discuss how we can build something exceptional together.</p>
+      </div>
+      <div class="relative z-10">
+        <a href="/contact" class="bg-primary text-surface font-sans font-bold px-10 py-4 rounded-full flex items-center gap-3 hover:-translate-y-1 transition-transform shadow-[0_10px_30px_-10px_rgba(57,255,20,0.3)]">
+            Start a Discussion <span class="material-symbols-outlined font-bold">mail</span>
+        </a>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</BaseLayout>
